@@ -61,10 +61,11 @@ export default function NorthCapeToursPage() {
       <section>
         <h2>North Cape shore excursions overview</h2>
         <p>
-          Every major Honningsvåg cruise call centres on North Cape access across
-          Magerøya. Structured shore excursions bundle tunnel driving, plateau
-          time at the Globe Monument, and return scheduling for typical port
-          windows.
+          Most Honningsvåg cruise calls offer North Cape access across Magerøya.
+          Structured shore excursions can bundle tunnel driving, plateau time at
+          the Globe Monument, and return planning, but published hours ashore do
+          not prove a plateau day will fit every ship call. Confirm entrance fees
+          and timing on your operator voucher.
         </p>
       </section>
 
@@ -101,15 +102,16 @@ export default function NorthCapeToursPage() {
       <section>
         <h2>Seasonal North Cape experiences</h2>
         <p>
-          Summer guests may book the{" "}
+          Summer guests may consider the{" "}
           <Link href="/excursions/north-cape-midnight-sun">
             North Cape Midnight Sun Experience
           </Link>{" "}
-          (May to August). Winter sailings target the{" "}
+          (May to August). Midnight sun visibility depends on weather and exact
+          date. Winter sailings may look at the{" "}
           <Link href="/excursions/aurora-explorer-northern-lights">
             Aurora Explorer Northern Lights Tour
           </Link>
-          .
+          ; aurora visibility is never guaranteed.
         </p>
       </section>
 
@@ -121,8 +123,9 @@ export default function NorthCapeToursPage() {
             is North Cape worth visiting
           </Link>
           , the <Link href="/honningsvag-port-guide">port guide</Link>, and use
-          the <Link href="/#planner">Cruise Smart Planner</Link> to match tour
-          length to all-aboard time.
+          the <Link href="/#planner">Cruise Smart Planner</Link> and{" "}
+          <Link href="/ship-schedule">ship schedule</Link> to match tour length
+          to confirmed all-aboard time. Hours alone are not enough.
         </p>
       </section>
     </ContentPage>

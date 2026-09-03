@@ -6,7 +6,7 @@ export const northCapeMidnightSunExcursion: ExcursionData = {
   path: "/excursions/north-cape-midnight-sun",
   title: "Midnight Sun",
   headline: "North Cape Midnight Sun Experience",
-  lead: "Seasonal May to August tour to North Cape with midnight sun atmosphere, Globe Monument, and scenic Arctic drive, approx. 3 hours.",
+  lead: "Seasonal May to August tour to North Cape with Globe Monument and scenic Arctic drive under summer light when conditions allow, approx. 3 hours. Midnight sun visibility is weather-dependent.",
   metaTitle: "North Cape Midnight Sun Experience from Honningsvåg",
   metaDescription:
     "North Cape midnight sun shore excursion May to August from Honningsvåg. Globe Monument, scenic drive, and Arctic summer light for cruise passengers.",
@@ -18,9 +18,9 @@ export const northCapeMidnightSunExcursion: ExcursionData = {
     meetingPoint:
       "Central Honningsvåg near cruise berths, harbour, or designated coach pickup",
     returnReassurance:
-      "Timed for typical Honningsvåg port calls with buffer before all aboard",
+      "Plan with a clear return buffer; hours ashore alone do not prove fit",
     bestFor:
-      "Cruise passengers seeking midnight sun experiences with clear return-to-ship planning",
+      "Cruise passengers seeking a seasonal North Cape summer-light outing with careful return planning",
   },
   snapshotCards: [
     { label: "Activity level", value: "Easy activity level" },
@@ -35,29 +35,29 @@ export const northCapeMidnightSunExcursion: ExcursionData = {
     { src: siteImages.mageroyaTundra, alt: imageAlts.mageroyaTundra },
   ],
   highlights: [
-    "North Cape under midnight sun",
+    "North Cape under Arctic summer light (midnight sun when conditions allow)",
     "Globe Monument visit",
     "Scenic Arctic drive on Magerøya",
     "Seasonal May to August departures",
-    "Photography of endless Arctic daylight",
+    "Photography of Arctic summer daylight when skies are clear",
   ],
   description: [
-    "North Cape Midnight Sun Experience is designed for cruise passengers calling at Honningsvåg who want a structured Arctic day without guessing Magerøya drive times or meeting points. Operators coordinate departures near the harbour so you maximise time ashore while keeping a realistic buffer before all aboard.",
+    "North Cape Midnight Sun Experience is designed for cruise passengers calling at Honningsvåg who want a structured Arctic day without guessing Magerøya drive times or meeting points. Operators usually coordinate departures near the harbour, but you still need a realistic buffer before all aboard.",
     "Your guide connects Honningsvåg's fishing heritage, Sami culture where seasonal camps operate, and the dramatic North Cape plateau scenery that defines this northernmost mainstream cruise port in Norway. Commentary helps you understand what you are seeing, from king crab handling to seabird colonies and midnight sun or aurora conditions depending on season.",
-    "The itinerary is paced for typical port calls listed in our Cruise Smart Planner. Confirm exact departure and return times on your voucher the night before, especially when multiple ships share Honningsvåg on the same day or Arctic weather slows coach traffic on Magerøya.",
-    "This tour fits the Approx. 3 hours window most guests expect for midnight sun experiences. Pair it with our port guide and one-day itinerary pages if you are planning a longer stay or a second call at Honningsvåg on a repositioning cruise.",
+    "Confirm exact departure and return times on your voucher the night before. Published hours ashore do not prove this outing will fit every call. Multiple ships sharing Honningsvåg, or Arctic weather on Magerøya, can stretch returns.",
+    "Operators commonly quote about 3 hours for midnight sun experiences, but you still need a confirmed return margin. Pair it with our port guide and one-day itinerary pages if you are planning a longer stay or a second call at Honningsvåg on a repositioning cruise.",
   ],
   included: [
     "Guided touring as described in the published itinerary",
     "Transport from Honningsvåg meeting points unless stated otherwise",
     "Commentary from local Arctic guides",
-    "Route paced for typical cruise port timings",
   ],
   notIncluded: [
     "Food and drinks unless stated by operator",
     "Personal purchases and optional upgrades",
     "Travel insurance and personal expenses",
     "Gratuities unless stated by operator",
+    "North Cape plateau entrance fees unless your operator voucher expressly includes them",
   ],
   timingAdvice: [
     "Match this tour to the hours shown in the Cruise Smart Planner on our homepage before booking.",
@@ -98,8 +98,8 @@ export const northCapeMidnightSunExcursion: ExcursionData = {
     { label: "All excursions", href: "/excursions" },
   ],
   bookingHref: "/excursions",
-  bookingLabel: "Book this excursion",
-  ctaTitle: "Ready to book North Cape Midnight Sun Experience?",
+  bookingLabel: "Explore this excursion",
+  ctaTitle: "Read the North Cape Midnight Sun Experience notes, then compare other options",
   ctaText:
-    "Secure your place before port day and explore more North Cape and Arctic wildlife tours built around your ship's timetable.",
+    "Use these notes to judge fit for your hours ashore. This site does not sell tickets. Arrange tours through operators or your usual booking channel.",
 };

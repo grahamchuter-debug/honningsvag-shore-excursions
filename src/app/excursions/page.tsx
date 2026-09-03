@@ -59,7 +59,7 @@ export default function ExcursionsIndexPage() {
       <JsonLd data={[buildItemListSchema(honningsvagTourListItems)]} />
       <ContentPage
         title="Honningsvåg Excursions"
-        lead="Every cruise-friendly shore excursion in Honningsvåg, North Cape VIP, puffin safaris, king crab, Sami culture, RIB adventures, and seasonal midnight sun and aurora tours."
+        lead="Shore excursion options in Honningsvåg: North Cape VIP, puffin safaris, king crab, Sami culture, RIB adventures, and seasonal midnight sun and aurora tours. Match duration to your confirmed hours ashore."
         heroImage={pageMeta.ogImage}
         heroImageAlt={pageMeta.ogImageAlt}
         pagePath={pageMeta.path}
@@ -68,7 +68,7 @@ export default function ExcursionsIndexPage() {
         relatedLinks={relatedLinks}
         faqs={faqs}
         ctaTitle="Need help choosing a Honningsvåg tour?"
-        ctaText="Use the Cruise Smart Planner on the homepage to match tours to your ship's timetable."
+        ctaText="Use the Cruise Smart Planner and ship schedule to match tours to your confirmed hours. This site does not sell tickets."
         ctaHref="/#planner"
         ctaButtonLabel="Open Cruise Smart Planner"
         belowHero={

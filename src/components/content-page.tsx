@@ -53,7 +53,7 @@ export function ContentPage({
   breadcrumbs,
   belowHero,
   ctaTitle = `Plan your ${siteConfig.portName} shore excursion`,
-  ctaText = "Browse cruise-friendly tours designed around your ship's time in port, with enough margin to return before all aboard.",
+  ctaText = "Browse cruise-friendly tours and guides for Honningsvåg. Match the outing to your confirmed hours ashore and keep a return buffer. This site does not sell tickets.",
   ctaHref = siteConfig.shoreExcursionsPath,
   ctaButtonLabel = `View ${siteConfig.portName} shore excursions`,
   showShipReassurance = true,
@@ -84,7 +84,7 @@ export function ContentPage({
           </p>
           {showShipReassurance ? (
             <p className="badge-accent-red mt-5 inline-flex rounded-full px-4 py-1.5 text-xs font-medium text-white/95 backdrop-blur-sm sm:text-sm">
-              Return to ship on time, cruise passenger friendly
+              Plan with return buffer · cruise passenger friendly
             </p>
           ) : null}
         </PageHero>

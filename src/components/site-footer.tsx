@@ -2,18 +2,11 @@ import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-config";
 
-const planYourVisitLinks = [
-  { label: "All Excursions", href: "/excursions" },
-  { label: "Honningsvåg Port Guide", href: "/honningsvag-port-guide" },
-  { label: "One Day in Honningsvåg", href: "/one-day-in-honningsvag" },
-  { label: "Is North Cape Worth Visiting?", href: "/is-north-cape-worth-visiting" },
-  { label: "Bird Safaris", href: "/bird-safaris-honningsvag" },
-  { label: "North Cape Tours", href: "/north-cape-tours" },
-  { label: "King Crab Tours", href: "/king-crab-tours" },
-  { label: "Best Time to Visit", href: "/best-time-to-visit-honningsvag" },
-] as const;
-
-const cruiseToolsLinks = [
+const planLinks = [
+  { label: "Excursions", href: "/excursions" },
+  { label: "One day in Honningsvåg", href: "/one-day-in-honningsvag" },
+  { label: "Port guide", href: "/honningsvag-port-guide" },
+  { label: "Ship schedule", href: "/ship-schedule" },
   {
     label: "North Cape VIP Experience",
     href: "/excursions/north-cape-vip-experience",
@@ -27,26 +20,27 @@ const cruiseToolsLinks = [
     href: "/excursions/north-cape-king-crab",
   },
   {
-    label: "Aurora Explorer",
-    href: "/excursions/aurora-explorer-northern-lights",
+    label: "Bruket Nordvågen",
+    href: "/excursions/bruket-nordvagen-arctic-village",
   },
 ] as const;
 
-const whyBookWithUs = [
-  "Cruise passenger friendly",
-  "Return to ship timing guidance",
-  "North Cape & Arctic wildlife specialists",
-] as const;
-
-const trustBullets = [
-  "Return-to-ship friendly itineraries",
-  "North Cape and Magerøya touring",
-  "King crab, Sami culture & bird safari planning",
-] as const;
-
-const ctaSecondaryLinks = [
-  { label: "Honningsvåg Port Guide", href: "/honningsvag-port-guide" },
-  { label: "One Day in Honningsvåg", href: "/one-day-in-honningsvag" },
+const guideLinks = [
+  {
+    label: "Is North Cape worth visiting?",
+    href: "/is-north-cape-worth-visiting",
+  },
+  { label: "North Cape tours", href: "/north-cape-tours" },
+  { label: "Bird safaris", href: "/bird-safaris-honningsvag" },
+  { label: "King crab tours", href: "/king-crab-tours" },
+  {
+    label: "Best time to visit",
+    href: "/best-time-to-visit-honningsvag",
+  },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ] as const;
 
 function FooterColumn({
@@ -58,7 +52,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
+      <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">
         {title}
       </h2>
       <div className="mt-3">{children}</div>
@@ -71,73 +65,65 @@ export function SiteFooter() {
     <footer className="mt-auto">
       <section className="border-t border-white/10 bg-navy text-white">
         <div className="mx-auto max-w-3xl px-4 py-10 text-center sm:px-6 sm:py-12">
-          <h2 className="text-xl font-bold sm:text-2xl">
-            Ready to plan your Honningsvåg cruise day?
+          <h2 className="text-xl font-semibold sm:text-2xl">
+            North Cape plateau, wildlife, or a shorter village day
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-white/80 sm:text-base">
-            Browse North Cape shore excursions, Arctic wildlife tours, port
-            guides, and planning tools designed for cruise passengers in
-            Honningsvåg.
+            Check your ship times, then pick one main direction. Hours ashore do
+            not prove that a North Cape plateau tour will fit on every call.
           </p>
-          <Link
-            href={siteConfig.shoreExcursionsPath}
-            className="btn-primary mt-6 shadow-lg sm:text-base"
-          >
-            View Shore Excursions
-          </Link>
-          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
-            {ctaSecondaryLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-white/65 transition hover:text-white"
-                >
-                  • {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href={siteConfig.shoreExcursionsPath} className="btn-primary">
+              Explore Honningsvåg excursions
+            </Link>
+            <Link href={siteConfig.schedulePath} className="btn-secondary">
+              Check ship schedule
+            </Link>
+          </div>
         </div>
       </section>
 
-      <div className="relative border-t border-white/10 bg-navy-deep text-slate-300">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--norway-red)]/50 to-transparent"
-        />
-
+      <div className="border-t border-white/10 bg-navy-deep text-slate-300">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4">
               <Link
                 href="/"
-                className="text-lg font-bold tracking-tight text-white transition hover:text-white/90"
+                className="text-lg font-semibold tracking-tight text-white transition hover:text-white/90"
               >
                 {siteConfig.name}
               </Link>
               <p className="mt-3 max-w-sm text-sm leading-6 text-white/65">
-                Independent Honningsvåg cruise port guides and North Cape shore
-                excursion planning for passengers visiting Arctic Norway.
+                Independent Honningsvåg cruise-port planning for North Cape,
+                Arctic wildlife and village culture. Not affiliated with any
+                cruise line, attraction or port authority.
               </p>
-              <ul className="mt-4 space-y-2">
-                {trustBullets.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2 text-sm leading-6 text-white/65"
+              {siteConfig.contactEmailVerified ? (
+                <p className="mt-3 text-sm text-white/65">
+                  Planning questions:{" "}
+                  <a
+                    href={`mailto:${siteConfig.contactEmail}`}
+                    className="text-white/85 underline-offset-2 hover:underline"
                   >
-                    <span aria-hidden="true" className="text-[var(--norway-red)]">
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+                    {siteConfig.contactEmail}
+                  </a>
+                </p>
+              ) : null}
+              <p className="mt-4 text-sm text-white/55">
+                Cruising elsewhere in Norway?{" "}
+                <a
+                  href={siteConfig.nationalAuthorityUrl}
+                  className="text-white/80 underline-offset-2 hover:underline"
+                >
+                  Norway Shore Excursions
+                </a>
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 sm:col-span-1 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3">
-              <FooterColumn title="Plan Your Visit">
+            <div className="grid grid-cols-1 gap-8 sm:col-span-1 sm:grid-cols-2 lg:col-span-8">
+              <FooterColumn title="Plan Honningsvåg">
                 <ul className="space-y-2">
-                  {planYourVisitLinks.map((link) => (
+                  {planLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
@@ -150,9 +136,9 @@ export function SiteFooter() {
                 </ul>
               </FooterColumn>
 
-              <FooterColumn title="Featured Tours">
+              <FooterColumn title="Guides & legal">
                 <ul className="space-y-2">
-                  {cruiseToolsLinks.map((link) => (
+                  {guideLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
@@ -160,23 +146,6 @@ export function SiteFooter() {
                       >
                         {link.label}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              </FooterColumn>
-
-              <FooterColumn title="Why Book With Us">
-                <ul className="space-y-2">
-                  {whyBookWithUs.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-2 text-sm leading-6 text-white/65"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--norway-blue)]"
-                      />
-                      {item}
                     </li>
                   ))}
                 </ul>
@@ -185,8 +154,8 @@ export function SiteFooter() {
           </div>
 
           <p className="mt-8 border-t border-white/10 pt-6 text-xs leading-5 text-white/45">
-            © 2026 {siteConfig.copyrightEntity}. Independent cruise excursion
-            guide.
+            © {new Date().getFullYear()} {siteConfig.copyrightEntity}. Independent
+            cruise-port planning for Honningsvåg.
           </p>
         </div>
       </div>

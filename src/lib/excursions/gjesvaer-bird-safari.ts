@@ -18,7 +18,7 @@ export const gjesvaerBirdSafariExcursion: ExcursionData = {
     meetingPoint:
       "Central Honningsvåg near cruise berths, harbour, or designated coach pickup",
     returnReassurance:
-      "Timed for typical Honningsvåg port calls with buffer before all aboard",
+      "Plan with a clear return buffer; hours ashore alone do not prove fit",
     bestFor:
       "Cruise passengers seeking gjesvær bird safari experiences with clear return-to-ship planning",
   },
@@ -44,14 +44,13 @@ export const gjesvaerBirdSafariExcursion: ExcursionData = {
   description: [
     "Gjesvær Bird Safari from Honningsvåg is designed for cruise passengers calling at Honningsvåg who want a structured Arctic day without guessing Magerøya drive times or meeting points. Operators coordinate departures near the harbour so you maximise time ashore while keeping a realistic buffer before all aboard.",
     "Your guide connects Honningsvåg's fishing heritage, Sami culture where seasonal camps operate, and the dramatic North Cape plateau scenery that defines this northernmost mainstream cruise port in Norway. Commentary helps you understand what you are seeing, from king crab handling to seabird colonies and midnight sun or aurora conditions depending on season.",
-    "The itinerary is paced for typical port calls listed in our Cruise Smart Planner. Confirm exact departure and return times on your voucher the night before, especially when multiple ships share Honningsvåg on the same day or Arctic weather slows coach traffic on Magerøya.",
-    "This tour fits the Approx. 3 to 4 hours window most guests expect for gjesvær bird safari experiences. Pair it with our port guide and one-day itinerary pages if you are planning a longer stay or a second call at Honningsvåg on a repositioning cruise.",
+    "Confirm exact departure and return times on your voucher the night before. Published hours ashore do not prove this outing will fit every call. Multiple ships sharing Honningsvåg, or Arctic weather on Magerøya, can stretch returns.",
+    "Operators commonly quote about 3 to 4 hours for gjesvær bird safari experiences, but you still need a confirmed return margin. Pair it with our port guide and one-day itinerary pages if you are planning a longer stay or a second call at Honningsvåg on a repositioning cruise.",
   ],
   included: [
     "Guided touring as described in the published itinerary",
     "Transport from Honningsvåg meeting points unless stated otherwise",
     "Commentary from local Arctic guides",
-    "Route paced for typical cruise port timings",
   ],
   notIncluded: [
     "Food and drinks unless stated by operator",
@@ -98,8 +97,8 @@ export const gjesvaerBirdSafariExcursion: ExcursionData = {
     { label: "All excursions", href: "/excursions" },
   ],
   bookingHref: "/excursions",
-  bookingLabel: "Book this excursion",
-  ctaTitle: "Ready to book Gjesvær Bird Safari from Honningsvåg?",
+  bookingLabel: "Explore this excursion",
+  ctaTitle: "Read the Gjesvær Bird Safari from Honningsvåg notes, then compare other options",
   ctaText:
-    "Secure your place before port day and explore more North Cape and Arctic wildlife tours built around your ship's timetable.",
+    "Use these notes to judge fit for your hours ashore. This site does not sell tickets. Arrange tours through operators or your usual booking channel.",
 };

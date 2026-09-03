@@ -3,12 +3,14 @@
 :root {
   --background: #f7fbfc;
   --foreground: #0f1a2e;
+  --surface: #eef5f7;
   --surface-muted: #e8eef1;
   --navy: #0a1628;
   --navy-deep: #050d18;
   --norway-blue: #2dd4a8;
   --norway-blue-hover: #22b892;
   --norway-red: #d4a853;
+  --accent-soft: #7eb8a8;
   --mountain-slate: #6b7a85;
   --mist-grey: #b8c4c9;
   --border-light: #c5d0d6;
@@ -62,7 +64,9 @@ body {
 }
 
 .btn-primary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
   background-color: var(--norway-blue);
   padding: 0.625rem 1.5rem;
@@ -108,6 +112,26 @@ body {
   background-color: var(--norway-blue-hover);
 }
 
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--norway-blue);
+  background: var(--surface);
+}
+
 .page-hero {
   background-size: cover;
   background-position: center;
@@ -121,6 +145,22 @@ body {
     rgb(10 22 40 / 0.72) 50%,
     rgb(45 212 168 / 0.18) 100%
   );
+}
+
+.hero-eyebrow,
+.section-eyebrow {
+  letter-spacing: 0.16em;
+}
+
+.hero-eyebrow {
+  color: var(--accent-soft);
+}
+
+.section-eyebrow {
+  color: var(--norway-blue);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .badge-accent-red {

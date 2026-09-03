@@ -63,8 +63,9 @@ export default function KingCrabToursPage() {
         <p>
           King crab is an iconic Arctic food experience tied to Finnmark fishing
           culture. Cruise passengers encounter live displays, tastings, and
-          factory visits across Honningsvåg shore excursions, often paired with
-          North Cape driving on the same ticket.
+          factory visits across Honningsvåg shore excursions, sometimes combined
+          with North Cape driving on the same operator itinerary. Confirm what
+          your voucher includes, including any plateau entrance fees.
         </p>
       </section>
 

@@ -2,28 +2,32 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CruisePortDayPlanner } from "@/components/cruise-port-day-planner";
-import {
-  ExploreNorwegianPorts,
-  explorePortsFromHonningsvag,
-} from "@/components/explore-norwegian-ports";
 import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
 import { PlannerInterestGroups } from "@/components/planner-interest-groups";
 import { TourCard } from "@/components/tour-card";
 import {
+  honningsvagScheduleIntegrity,
+  formatScheduleDate,
+} from "@/lib/honningsvag-schedules";
+import {
   honningsvagTourCards,
   honningsvagTourListItems,
 } from "@/lib/honningsvag-tours";
-import { buildPageMetadata } from "@/lib/site-metadata";
-import { buildFaqSchema, buildItemListSchema, buildWebPageSchema } from "@/lib/site-schema";
-import { imageAlts, siteImages } from "@/lib/site-images";
 import { siteConfig } from "@/lib/site-config";
+import { imageAlts, siteImages } from "@/lib/site-images";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import {
+  buildFaqSchema,
+  buildItemListSchema,
+  buildWebPageSchema,
+} from "@/lib/site-schema";
 
 const pageMeta = {
   title:
-    "Honningsvag Shore Excursions | North Cape Tours, Bird Safaris & Arctic Cruise Port Guides",
+    "Honningsvag Shore Excursions | North Cape, Bird Safaris & Arctic Port Guides",
   description:
-    "Plan your Honningsvåg cruise port day with North Cape tours, Gjesvær bird safaris, king crab experiences, Sami culture, midnight sun, northern lights, and return-to-ship friendly shore excursion advice.",
+    "Plan your Honningsvåg cruise port day: North Cape plateau options, Gjesvær bird safaris, king crab and village time, published ship schedules, and honest return-buffer planning.",
   path: "/",
 } as const;
 
@@ -34,36 +38,40 @@ export const metadata: Metadata = buildPageMetadata({
   absoluteTitle: true,
 });
 
-const trustBadges = [
-  { label: "Return to ship on time", accent: true },
-  { label: "North Cape specialists", accent: false },
-  { label: "Arctic wildlife experiences", accent: false },
-] as const;
-
 const homeFaqs = [
   {
-    question: "What is the best shore excursion in Honningsvåg for cruise passengers?",
+    question: "Is this site for cruise passengers calling at Honningsvåg?",
     answer:
-      "The North Cape VIP Experience is the premium headline choice when you have four to five hours or more ashore. For wildlife-focused days, the Gjesvær Bird Safari is a major bestseller. Shorter port calls suit Bruket Nordvågen or the Taste of the Arctic E-Bike Tour.",
+      "Yes. This is an independent Honningsvåg cruise-port planning site. It helps you choose between a North Cape plateau day, local wildlife, or a shorter village outing, check published ship calls, and leave a return buffer. Confirm final timings with your cruise line.",
   },
   {
-    question: "How long does it take to reach North Cape from the Honningsvåg cruise port?",
+    question: "Should I do North Cape or stay closer to harbour?",
     answer:
-      "The drive across Magerøya to North Cape typically takes 30 to 45 minutes each way by coach, plus time at the Globe Monument and viewpoints. Build buffer before all aboard, Arctic weather can slow returns.",
+      "North Cape is the headline reason most ships call here when you have a long, confirmed window and accept weather risk on the plateau. Gjesvær bird safari and coastal RIBs suit wildlife-led days. Bruket Nordvågen and the e-bike tour suit shorter calls near town.",
   },
   {
-    question: "Can I see puffins on a Honningsvåg port day?",
+    question:
+      "Can I do North Cape because my ship stays several hours in Honningsvåg?",
     answer:
-      "Yes. The Gjesvær Bird Safari targets puffins, seabirds, and Arctic coastal wildlife with cruise-friendly timing, a strong alternative to standard North Cape coach tours.",
+      "Published hours ashore are not enough on their own. North Cape needs Magerøya driving time, plateau time, and a clear return margin before all aboard. Weather and coach traffic can stretch the day. This site does not invent current ticket or coach operation.",
   },
   {
-    question: "Should I book Honningsvåg shore excursions independently?",
+    question: "Can I book shore excursions on this site?",
     answer:
-      "Independent bookings often cost less than ship tours, but you manage your own return-to-ship timing. Use our Cruise Smart Planner, confirm all-aboard on your cruise app, and allow 45 minutes before the gangway closes.",
+      "This site is for planning and discovery. There is no live booking checkout here. Use the excursion pages and guides to understand options, then arrange tours through operators or your usual booking channel.",
   },
 ] as const;
 
 export default function Home() {
+  const firstLabel = honningsvagScheduleIntegrity.firstDate
+    ? formatScheduleDate(honningsvagScheduleIntegrity.firstDate)
+    : "";
+  const lastLabel = honningsvagScheduleIntegrity.lastDate
+    ? formatScheduleDate(honningsvagScheduleIntegrity.lastDate)
+    : "";
+  const featured = honningsvagTourCards.slice(0, 3);
+  const remaining = honningsvagTourCards.slice(3);
+
   return (
     <>
       <JsonLd
@@ -77,148 +85,221 @@ export default function Home() {
           buildFaqSchema(homeFaqs),
         ]}
       />
-      <main className="min-h-screen bg-white text-slate-900">
+      <main>
         <PageHero
           image={siteImages.hero}
           imageAlt={imageAlts.hero}
-          centered
           className="min-h-[28rem] md:min-h-[32rem]"
         >
-          <h1 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-6xl lg:text-7xl">
-            Honningsvag Shore Excursions
-          </h1>
-
-          <p className="mx-auto mb-6 max-w-3xl text-base text-white/90 sm:mb-8 sm:text-xl md:text-2xl">
-            Explore North Cape, Arctic wildlife, king crab, Sami culture and bird
-            safaris with cruise-friendly shore excursions from Honningsvåg.
+          <p className="hero-eyebrow mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+            {siteConfig.name}
           </p>
-
-          <a href="#tours" className="btn-primary px-8 py-4 text-base sm:text-lg">
-            View Excursions
-          </a>
-
-          <ul className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
-            {trustBadges.map((badge) => (
-              <li
-                key={badge.label}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium text-white/95 backdrop-blur-sm sm:px-4 sm:text-sm ${
-                  badge.accent
-                    ? "badge-accent-red"
-                    : "border border-white/25 bg-white/10"
-                }`}
-              >
-                {badge.label}
-              </li>
-            ))}
-          </ul>
+          <h1 className="mb-5 max-w-4xl text-3xl font-semibold leading-tight text-white sm:text-5xl">
+            Your ship is in Honningsvåg. North Cape plateau day, or stay closer
+            to harbour?
+          </h1>
+          <p className="max-w-2xl text-base leading-7 text-white/90 sm:text-lg">
+            The Globe Monument is the headline draw when the clock and coach
+            allow. Bird safaris and village time suit shorter or wildlife-led
+            calls. Choose one main direction, then keep time to get back.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/excursions"
+              className="btn-primary w-full justify-center sm:w-auto"
+            >
+              Explore Honningsvåg excursions
+            </Link>
+            <Link
+              href="/ship-schedule"
+              className="btn-secondary w-full justify-center sm:w-auto"
+            >
+              Check your ship schedule
+            </Link>
+          </div>
         </PageHero>
 
-        <section id="tours" className="border-t bg-surface-muted">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-            <h2 className="mb-2 text-3xl font-bold sm:mb-3 sm:text-4xl">
-              Popular Honningsvåg &amp; North Cape Tours
+        <section className="border-b border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Three Honningsvåg days</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              North Cape plateau, local wildlife, or a shorter village outing
             </h2>
-            <p className="mb-4 max-w-2xl text-slate-600">
-              Arctic shore excursions departing near Honningsvåg harbour, from
-              premium North Cape VIP experiences to puffin safaris and king crab
-              encounters.
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              The inventory on this site already splits that way. Use the
+              one-day guide for hours, not as proof that North Cape will fit
+              every call.
             </p>
-            <p className="mb-8 max-w-2xl rounded-lg border border-slate-200 border-l-[3px] border-l-[var(--norway-red)] bg-white px-4 py-3 text-sm leading-6 text-slate-700">
-              Every excursion featured is selected to fit comfortably within a
-              typical Honningsvåg cruise port call when matched to your hours
-              ashore.
-            </p>
+            <div className="mt-10 grid gap-10 md:grid-cols-3">
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">
+                  North Cape plateau day
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Globe Monument and Magerøya plateau when you have a long,
+                  confirmed window. Typical tours run about three to five hours,
+                  plus buffer. Hours ashore alone do not prove fit.
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  <Link
+                    href="/excursions/north-cape-vip-experience"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    North Cape VIP Experience
+                  </Link>
+                  <Link
+                    href="/north-cape-tours"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    Compare North Cape tours
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">
+                  Local wildlife
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Gjesvær puffin and seabird safaris, or a coastal RIB when you
+                  want Arctic wildlife without a standard plateau coach day.
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  <Link
+                    href="/excursions/gjesvaer-bird-safari"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    Gjesvær Bird Safari
+                  </Link>
+                  <Link
+                    href="/bird-safaris-honningsvag"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    Bird safaris guide
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">
+                  Shorter village time
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Bruket Nordvågen, e-bike tastings, or compact king crab culture
+                  when the call is short or you want to stay closer to harbour.
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  <Link
+                    href="/excursions/bruket-nordvagen-arctic-village"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    Bruket Nordvågen
+                  </Link>
+                  <Link
+                    href="/excursions/taste-of-the-arctic-ebike-tour"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+                  >
+                    Taste of the Arctic E-Bike
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              {honningsvagTourCards.map((tour) => (
-                <TourCard
-                  key={tour.href}
-                  href={tour.href}
-                  image={tour.image}
-                  imageAlt={tour.imageAlt}
-                  title={tour.title}
-                  description={tour.description}
-                  accent={tour.accent}
-                />
+        <section className="border-b border-[var(--border-light)] bg-surface-muted py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Find your ship</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Check when your ship is in Honningsvåg
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              {honningsvagScheduleIntegrity.total} published Honningsvåg calls
+              from {firstLabel} to {lastLabel}. Arrival and departure times shape
+              what is realistic ashore. Always confirm with your cruise line.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/ship-schedule" className="btn-outline-dark">
+                Open Honningsvåg ship schedule
+              </Link>
+              <Link
+                href="/one-day-in-honningsvag"
+                className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+              >
+                Then plan your hours
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="tours" className="scroll-mt-24 py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Excursion options</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Experiences already on this site
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Ten products. No invented prices. Durations are approximate. Keep
+              a return buffer. Match the outing to your confirmed hours, not to a
+              generic port-call assumption. This site does not sell tickets.
+            </p>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {featured.map((tour) => (
+                <TourCard key={tour.href} {...tour} />
               ))}
             </div>
+            {remaining.length > 0 ? (
+              <div className="mt-8 grid gap-6 md:grid-cols-2">
+                {remaining.map((tour) => (
+                  <TourCard key={tour.href} {...tour} />
+                ))}
+              </div>
+            ) : null}
             <p className="mt-8">
               <Link
                 href="/excursions"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-[var(--norway-blue)] hover:text-[var(--norway-blue)]"
+                className="text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
               >
-                View all Honningsvåg excursions
+                Compare all Honningsvåg excursions
               </Link>
             </p>
           </div>
         </section>
 
-        <section id="why-honningsvag" className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-            <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
-              Why Honningsvåg is ideal for cruise shore excursions
-            </h2>
-            <p className="text-base leading-8 text-slate-700 sm:text-lg">
-              Honningsvåg is the gateway to North Cape on Magerøya, Europe&apos;s
-              most famous northern landmark, yet the port also unlocks Arctic
-              wildlife, king crab culture, seasonal Sami experiences, midnight
-              sun, and northern lights chasing. The compact harbour sits within
-              walking distance of town, while structured tours handle Magerøya
-              drive times so you return to ship on schedule.
-            </p>
-            <ul className="mt-6 list-disc space-y-2 pl-5 text-base leading-8 text-slate-700">
-              <li>Headline access to North Cape and the Globe Monument</li>
-              <li>Gjesvær puffin and seabird safaris for wildlife-led port days</li>
-              <li>King crab, fish factory, and Arctic village cultural experiences</li>
-              <li>Seasonal Sami camp and reindeer encounters when operating</li>
-              <li>Match excursions to your actual hours ashore with our Cruise Smart Planner</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="wildlife" className="border-t bg-surface-muted">
-          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+        <section className="border-y border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
-                  Wildlife and bird safari experiences
+                <p className="section-eyebrow">Wildlife alternative</p>
+                <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+                  Not every port day needs a coach to North Cape
                 </h2>
-                <p className="text-base leading-8 text-slate-700">
-                  Not every Honningsvåg port day needs a coach to North Cape.
+                <p className="mt-3 text-base leading-7 text-slate-600">
                   The{" "}
-                  <Link href="/excursions/gjesvaer-bird-safari" className="content-link">
+                  <Link
+                    href="/excursions/gjesvaer-bird-safari"
+                    className="content-link"
+                  >
                     Gjesvær Bird Safari
                   </Link>{" "}
-                  delivers puffins, seabirds, and dramatic coastal cliffs with
-                  strong photography, ideal when you want Arctic wildlife
-                  without the standard plateau crowds.
-                </p>
-                <p className="mt-4 text-base leading-8 text-slate-700">
-                  The{" "}
+                  delivers puffins, seabirds and coastal cliffs with strong
+                  photography. The{" "}
                   <Link
                     href="/excursions/coastal-treasures-rib-safari"
                     className="content-link"
                   >
                     Coastal Treasures Arctic RIB Safari
                   </Link>{" "}
-                  adds eagles, seals, and marine mammals if conditions allow.
-                  Read our{" "}
+                  adds eagles, seals and marine mammals if conditions allow. Read
+                  the{" "}
                   <Link href="/bird-safaris-honningsvag" className="content-link">
                     bird safaris guide
                   </Link>{" "}
-                  for SEO-focused planning on puffin tours from cruise ships.
+                  for cruise-friendly wildlife planning.
                 </p>
-                <Link
-                  href="/bird-safaris-honningsvag"
-                  className="btn-primary-on-light mt-6 inline-block"
-                >
-                  Bird safaris guide
-                </Link>
               </div>
               <figure className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
                 <img
-                  src={siteImages.puffin}
-                  alt={imageAlts.puffin}
+                  src={siteImages.gjesvaerPuffins}
+                  alt={imageAlts.gjesvaerPuffins}
                   className="aspect-[4/3] h-full w-full object-cover"
                 />
               </figure>
@@ -226,55 +307,161 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="planner" className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-            <CruisePortDayPlanner />
-            <PlannerInterestGroups />
+        <section className="border-b border-[var(--border-light)] bg-white py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">North Cape honesty</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Hours ashore do not prove the plateau day
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Fog and wind are common on the plateau. Midnight sun and northern
+              lights depend on season and sky conditions, not on booking a tour.
+              Entrance tickets and coach operation vary by operator. Confirm each
+              outing separately and leave buffer before all aboard.
+            </p>
+            <p className="mt-4">
+              <Link
+                href="/is-north-cape-worth-visiting"
+                className="text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+              >
+                Is North Cape worth visiting?
+              </Link>
+            </p>
           </div>
         </section>
 
-        <ExploreNorwegianPorts
-          config={explorePortsFromHonningsvag}
-          variant="compact"
-        />
-
-        <section id="faqs" className="border-t bg-surface-muted">
-          <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-            <h2 className="mb-6 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Honningsvåg cruise passenger FAQs
+        <section className="py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">First time in Honningsvåg</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Useful planning guides
             </h2>
-            <dl className="space-y-6">
-              {homeFaqs.map((faq) => (
-                <div
-                  key={faq.question}
-                  className="rounded-lg border border-slate-200 border-l-[3px] border-l-[var(--norway-blue)] bg-white p-5 shadow-sm"
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  href: "/honningsvag-port-guide",
+                  title: "Cruise port guide",
+                  text: "Harbour layout, town access and coach pickup context for Honningsvåg.",
+                },
+                {
+                  href: "/one-day-in-honningsvag",
+                  title: "One day in Honningsvåg",
+                  text: "Sample shapes for short, classic and longer port calls.",
+                },
+                {
+                  href: "/is-north-cape-worth-visiting",
+                  title: "Is North Cape worth visiting?",
+                  text: "Honest context on plateau days, weather and wildlife alternatives.",
+                },
+                {
+                  href: "/north-cape-tours",
+                  title: "North Cape tours",
+                  text: "Compare VIP, king crab, Sami camp and seasonal plateau options.",
+                },
+                {
+                  href: "/bird-safaris-honningsvag",
+                  title: "Bird safaris",
+                  text: "Puffin and seabird planning from the cruise harbour.",
+                },
+                {
+                  href: "/best-time-to-visit-honningsvag",
+                  title: "Best time to visit",
+                  text: "Midnight sun, puffin season and winter aurora context by month.",
+                },
+              ].map((item) => (
+                <li
+                  key={item.href}
+                  className="border-t border-[var(--border-light)] pt-5"
                 >
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    <Link
+                      href={item.href}
+                      className="underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section
+          id="planner"
+          className="scroll-mt-24 border-y border-[var(--border-light)] bg-surface-muted py-14 sm:py-16"
+        >
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Port-day planning</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Think in hours, Magerøya distance and return buffer
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Use published times as a planning start. This Cruise Smart Planner
+              helps you think through the day. It does not invent coach
+              operation, North Cape tickets or weather.
+            </p>
+            <div className="mt-8">
+              <CruisePortDayPlanner />
+              <PlannerInterestGroups />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Norway beyond Honningsvåg</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Planning other Norwegian ports?
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              For multi-port itineraries, the national planning site covers the
+              wider Norway cruise picture.
+            </p>
+            <a
+              href={siteConfig.nationalAuthorityUrl}
+              className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--navy)] underline-offset-4 hover:underline"
+            >
+              Norway Shore Excursions
+            </a>
+          </div>
+        </section>
+
+        <section className="border-y border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            <p className="section-eyebrow">FAQ</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Honningsvåg cruise questions
+            </h2>
+            <dl className="mt-8 space-y-6">
+              {homeFaqs.map((faq) => (
+                <div key={faq.question}>
                   <dt className="font-semibold text-slate-900">{faq.question}</dt>
-                  <dd className="mt-2 leading-7 text-slate-700">{faq.answer}</dd>
+                  <dd className="mt-2 text-sm leading-6 text-slate-600">
+                    {faq.answer}
+                  </dd>
                 </div>
               ))}
             </dl>
           </div>
         </section>
 
-        <section className="border-t bg-navy text-white">
-          <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-16">
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Plan your Honningsvåg port day with confidence
+        <section className="bg-navy py-14 text-white sm:py-16">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+            <h2 className="text-2xl font-semibold sm:text-3xl">
+              Honningsvåg planning concierge
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
-              Browse North Cape shore excursions, read the port guide, and use the
-              Cruise Smart Planner, everything built for cruise passengers who
-              need to return on time.
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
+              {siteConfig.contactEmailVerified
+                ? `Questions about shaping a Honningsvåg port day? Email ${siteConfig.contactEmail}.`
+                : "A destination email is being prepared. Until then, use the schedule, one-day guide and excursion pages on this site."}
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={siteConfig.shoreExcursionsPath} className="btn-primary sm:text-base">
-                Book a Tour
-              </Link>
-              <Link href="/honningsvag-port-guide" className="btn-secondary sm:text-base">
-                Honningsvåg Port Guide
-              </Link>
-            </div>
+            <Link href="/contact" className="btn-primary mt-6">
+              Contact
+            </Link>
           </div>
         </section>
       </main>

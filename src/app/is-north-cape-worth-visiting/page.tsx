@@ -31,12 +31,12 @@ const faqs = [
   {
     question: "Is North Cape worth it for first-time Norway cruise passengers?",
     answer:
-      "Yes for most guests calling at Honningsvåg, it is the defining landmark of Arctic Norway cruises. A structured shore excursion handles Magerøya logistics and return timing.",
+      "Often yes for guests calling at Honningsvåg, it is the defining landmark of Arctic Norway cruises. A structured shore excursion can handle Magerøya logistics, but you still need a confirmed return buffer and should treat weather and entrance fees as variables.",
   },
   {
     question: "Is it worth booking a North Cape tour instead of going independently?",
     answer:
-      "Tours bundle transport, plateau time, and return scheduling, valuable when you have limited hours ashore. Independent travel suits guests with very long port days and confident Arctic driving plans.",
+      "Tours can bundle transport, plateau time, and return planning, valuable when you have limited hours ashore. Independent travel suits guests with very long confirmed port days and confident Arctic plans. Neither option invents clear weather or ticket inclusion.",
   },
   {
     question: "What can cruise passengers realistically see at North Cape?",
@@ -77,9 +77,10 @@ export default function IsNorthCapeWorthVisitingPage() {
       <section>
         <h2>Is a shore excursion worth booking?</h2>
         <p>
-          Yes when you have three to five hours ashore and want predictable return
-          timing. Operators understand all-aboard pressure, tunnel traffic, and
-          peak-season congestion. Compare options on our{" "}
+          Often yes when you have three to five hours ashore and want structured
+          return planning. Operators understand all-aboard pressure, tunnel
+          traffic, and peak-season congestion, but hours ashore alone do not prove
+          fit. Compare options on our{" "}
           <Link href="/north-cape-tours">North Cape tours</Link> page and use the{" "}
           <Link href="/#planner">Cruise Smart Planner</Link>.
         </p>

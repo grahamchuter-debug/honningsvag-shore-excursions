@@ -41,7 +41,7 @@ const faqs = [
   {
     question: "How do I plan a wildlife-focused Honningsvåg port day?",
     answer:
-      "Book the Gjesvær Bird Safari for puffins and seabirds, or the Coastal Treasures RIB Safari for marine wildlife. Pair with our bird safaris guide for comparison.",
+      "Consider the Gjesvær Bird Safari for puffins and seabirds, or the Coastal Treasures RIB Safari for marine wildlife. Pair with our bird safaris guide for comparison.",
   },
 ] as const;
 

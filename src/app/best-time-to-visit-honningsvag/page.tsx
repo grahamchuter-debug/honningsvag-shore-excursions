@@ -31,12 +31,12 @@ const faqs = [
   {
     question: "When is midnight sun visible at North Cape?",
     answer:
-      "Midnight sun period runs roughly May through August. The North Cape Midnight Sun Experience targets this season with approx. three-hour touring.",
+      "Midnight sun period runs roughly May through August when skies are clear. The North Cape Midnight Sun Experience targets this season with approx. three-hour touring, but visibility is weather-dependent.",
   },
   {
     question: "When can cruise passengers see northern lights from Honningsvåg?",
     answer:
-      "Aurora visibility peaks on dark winter months September to March when skies are clear. Book the Aurora Explorer Northern Lights Tour on winter itineraries.",
+      "Aurora chances are highest on dark winter months roughly September to March when skies are clear. The Aurora Explorer Northern Lights Tour is a winter chase option; lights are never guaranteed.",
   },
   {
     question: "When is best for puffin and bird safaris?",
@@ -67,12 +67,12 @@ export default function BestTimeToVisitHonningsvagPage() {
         <h2>Summer and midnight sun (May to August)</h2>
         <p>
           Peak cruise season brings continuous daylight and the busiest North
-          Cape departures. Book the{" "}
+          Cape departures. Consider the{" "}
           <Link href="/excursions/north-cape-midnight-sun">
             North Cape Midnight Sun Experience
           </Link>{" "}
-          for Globe Monument photography under the Arctic sun. Puffin safaris to
-          Gjesvær operate through summer, see{" "}
+          for Globe Monument photography under Arctic summer light when
+          conditions allow. Puffin safaris to Gjesvær operate through summer, see{" "}
           <Link href="/bird-safaris-honningsvag">bird safaris</Link>.
         </p>
       </section>
@@ -96,7 +96,8 @@ export default function BestTimeToVisitHonningsvagPage() {
             Aurora Explorer
           </Link>{" "}
           chases lights toward North Cape Plateau, Sarnes, and Kåfjord with hot
-          drinks and winter suits when needed.
+          drinks and winter suits when needed. Clear skies help, but a display is
+          never guaranteed.
         </p>
       </section>
 

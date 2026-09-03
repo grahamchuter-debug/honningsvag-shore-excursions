@@ -18,7 +18,8 @@ const mageroyaReindeer =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Mager%C3%B8ya_Reindeer_along_the_E69_Norway_16.jpg/1280px-Mager%C3%B8ya_Reindeer_along_the_E69_Norway_16.jpg";
 const midnightSunGlobe =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Midnight_sun_at_the_Nordkapp_Globe_Monument_2024-07-22.jpg/1280px-Midnight_sun_at_the_Nordkapp_Globe_Monument_2024-07-22.jpg";
-const northernLights =
+/** Lauklines (Tromsø area). WRONG_LOCATION for Honningsvåg local presentation. Kept for provenance audit only; do not use in aurora hero/gallery. */
+const northernLightsLauklines =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Northern_Lights_at_Lauklines_Norway.jpg/1280px-Northern_Lights_at_Lauklines_Norway.jpg";
 const northCapePanorama =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Norway%2C_North_Cape.jpg/1280px-Norway%2C_North_Cape.jpg";
@@ -36,7 +37,9 @@ export const siteImages = {
   kingCrab: kingCrabHonningsvag,
   samiReindeer: mageroyaReindeer,
   midnightSun: midnightSunGlobe,
-  northernLights,
+  /** @deprecated Wrong geography (Lauklines). Prefer nordkappPlateau / northCapeCliffs / honningsvagHarbour. */
+  northernLights: northernLightsLauklines,
+  northernLightsLauklines,
   ribBoat: honningsvagHarbour,
   fishingVillage: mageroyaTundra,
   portGuide: honningsvagHarbour,
@@ -55,7 +58,7 @@ export const siteImages = {
   ebikeTour: mageroyaTundra,
   bruketNordvagenTour: kingCrabHonningsvag,
   midnightSunTour: midnightSunGlobe,
-  auroraTour: northernLights,
+  auroraTour: northCapeCliff,
   northCapePanorama,
   nordkappPlateau,
   flamPortCard:
@@ -97,7 +100,9 @@ export const imageAlts = {
   midnightSun:
     "Midnight sun at the North Cape Globe Monument, summer Arctic cruise",
   northernLights:
-    "Northern lights aurora over northern Norway, Aurora Explorer tour",
+    "Aurora chase viewpoints on Magerøya near Honningsvåg (visibility not guaranteed)",
+  northernLightsLauklines:
+    "Northern lights at Lauklines near Tromsø — wrong geography for Honningsvåg local presentation",
   ribBoat:
     "Honningsvåg harbour waterfront, departure point for Arctic coastal tours",
   fishingVillage:
@@ -135,7 +140,7 @@ export const imageAlts = {
   midnightSunCard:
     "Midnight sun at North Cape Globe Monument, seasonal May to August tour",
   auroraCard:
-    "Northern lights over northern Norway, Aurora Explorer from Honningsvåg",
+    "Rocky North Cape cliffs near Honningsvåg, aurora chase viewpoint scenery (lights not guaranteed)",
   northCapePanorama:
     "Panoramic view of North Cape plateau and Barents Sea coastline",
   nordkappPlateau:
